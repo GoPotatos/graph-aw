@@ -11,10 +11,11 @@ import { resolvers } from "./resolvers"
 import { userModel } from "./model"
 import { verify } from "jsonwebtoken"
 
-let cachedDB: Connection;
+export let cachedDB: Connection;
 
 const connectToDatabase = async () => {
-    if (cachedDB) return;
+    console.log("mongoose", mongoose.connection.readyState)
+    if (cachedDB && (mongoose.connection.readyState === 1 || mongoose.connection.readyState === 2)) return;
     console.log("URI", process.env.MONGODB_URI)
     await mongoose.connect(process.env.MONGODB_URI!, {})
     console.log("Connected", Date.now())
