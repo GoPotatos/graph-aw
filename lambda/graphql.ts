@@ -10,6 +10,9 @@ export const handler = async (event: APIGatewayProxyEvent, ctx: Context) => {
             err: Error | null | string | undefined
             , args: any) =>
             err ? reject(err) : resolve(args)
-        return server.createHandler()(event, ctx, cb)
+        return server.createHandler()({
+            ...event,
+            requestContext: event.requestContext || ctx || {},
+        }, ctx, cb)
     })
 }
