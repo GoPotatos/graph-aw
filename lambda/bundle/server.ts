@@ -54,6 +54,7 @@ export const createLambdaServer = (
     { headers }: APIGatewayProxyEvent,
     context: Context
 ) => {
+    console.log("From lambda")
     return new ApolloLambdaServer({
         typeDefs,
         resolvers,
