@@ -1,0 +1,36 @@
+{
+  "name": "graph-aws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "codegen": "graphql-codegen --config ./codegen.yml",
+    "bundle": "ncp ./src ./lambda/bundle",
+    "build:lambda": "npm run bundle && tsc -p lambda/tsconfig.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^3.11.1",
+    "apollo-server-lambda": "^3.11.1",
+    "aws-lambda": "^1.0.7",
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "graphql": "^16.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.8.0"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.16.1",
+    "@graphql-codegen/introspection": "^2.2.3",
+    "@graphql-codegen/typescript": "^2.8.5",
+    "@graphql-codegen/typescript-resolvers": "^2.7.10",
+    "@types/aws-lambda": "^8.10.109",
+    "@types/bcrypt": "^5.0.0",
+    "ncp": "^2.0.0",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.4"
+  }
+}
