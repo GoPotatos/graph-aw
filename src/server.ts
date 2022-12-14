@@ -58,6 +58,9 @@ export const createLambdaServer = (
         typeDefs,
         resolvers,
         introspection: true,
+        plugins: [
+            process.env.NODE_ENV === "production" ? ApolloServerPluginLandingPageDisabled : ApolloServerPluginLandingPageGraphQLPlayground
+        ],
         context: async () => {
             const auth = checkAuth(headers)
             await connectToDatabase()
