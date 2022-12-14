@@ -24,6 +24,8 @@ import { userModel } from "./model"
 
 import { compareSync } from "bcrypt"
 import { sign } from "jsonwebtoken"
+import mongoose from "mongoose"
+
 import { Resolvers } from "./generated/graphql"
 // async function asd() {
 //     const user = await userModel.findOne({ email: "" }).exec()
@@ -36,6 +38,8 @@ export const resolvers: Resolvers = {
             console.log("id", id, auth)
             if (!auth) return null
             const user = userModel.findById(id).exec()
+            mongoose.disconnect()
+            console.log("disconnected")
             return user
         },
         login: async (_, { email, password }, { models: { userModel } }) => {
