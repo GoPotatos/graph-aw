@@ -36,9 +36,9 @@ export const resolvers: Resolvers = {
         user: async (_, { id },
             { auth, models: { userModel } }) => {
             console.log("id", id, auth)
-            if (!auth) return null
-            const user = userModel.findById(id).exec()
-            mongoose.disconnect()
+            // if (!auth) return null
+            const user = await userModel.findById(id).exec()
+            await mongoose.disconnect()
             console.log("disconnected")
             return user
         },
