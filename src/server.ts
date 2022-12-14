@@ -17,6 +17,7 @@ const connectToDatabase = async () => {
     if (cachedDB) return;
     console.log("URI", process.env.MONGODB_URI)
     await mongoose.connect(process.env.MONGODB_URI!, {})
+    console.log("Connected", Date.now())
     cachedDB = mongoose.connection
 }
 
