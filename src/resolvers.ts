@@ -42,7 +42,7 @@ export const resolvers: Resolvers = {
                 const user = await userModel.findById(id).exec()
                 console.timeEnd()
                 console.log("user", Date.now())
-                // await mongoose.disconnect()
+                await mongoose.disconnect()
                 console.log("disconnected")
                 return user
             }
