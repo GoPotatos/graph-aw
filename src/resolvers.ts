@@ -35,17 +35,19 @@ export const resolvers: Resolvers = {
     Query: {
         user: async (_, { id },
             { auth, models: { userModel } }) => {
-            console.log("id", id, auth)
+            console.log("id", id, Date.now(), auth)
             // if (!auth) return null
             try {
+                console.time()
                 const user = await userModel.findById(id).exec()
-
-                console.log("user")
+                console.timeEnd()
+                console.log("user", Date.now())
                 // await mongoose.disconnect()
                 console.log("disconnected")
                 return user
             }
             catch (err) {
+                console.log("Got Error", Date.now(), err)
                 return null
             }
         },
