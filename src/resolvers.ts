@@ -37,10 +37,17 @@ export const resolvers: Resolvers = {
             { auth, models: { userModel } }) => {
             console.log("id", id, auth)
             // if (!auth) return null
-            const user = await userModel.findById(id).exec()
-            await mongoose.disconnect()
-            console.log("disconnected")
-            return user
+            try {
+                const user = await userModel.findById(id).exec()
+
+                console.log("user")
+                // await mongoose.disconnect()
+                console.log("disconnected")
+                return user
+            }
+            catch (err) {
+                return null
+            }
         },
         login: async (_, { email, password }, { models: { userModel } }) => {
             let token = ""
